@@ -5,9 +5,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    start: "",
+    end: "",
+    sky: "",
+    endDate: ""
   },
-
+  startDate(e){
+    this.setData({
+      start: e.detail.value
+    },()=>{
+      this.getsky()
+    })
+  },
+  endDate(e){
+    this.setData({
+      end: e.detail.value
+    },() => {
+      this.getsky()
+    })
+  },
+  getsky(){
+    let distance= +new Date(this.data.end) - (+new Date(this.data.start));
+    this.setData({
+      sky: Math.floor(distance / 1000 / 60 / 60 / 24)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +48,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let now = new Date();
+    now = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String           (now.getDay()).padStart(2, '0')}`
+   
+    this.setData({
+      start: now,
+      end: now,
+      endDate: now
+    })
   },
 
   /**

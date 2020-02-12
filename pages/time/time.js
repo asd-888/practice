@@ -40,7 +40,7 @@ Page({
     return Number((nowArr[0] - preArr[0]) * 12) + Number(nowArr[1] - preArr[1])
   },
   toMy(){
-    console.log("跳转页面")
+    wx.navigateTo({url:"/pages/my/my"})
   },
   onLoad: function (options) {
 
